@@ -1,19 +1,18 @@
 pipeline {
     agent any
-
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-                echo "Pipeline is running..."
+                echo "Pipeline running..."
             }
         }
     }
-
     post {
         always {
+            echo "Sending email..."
             emailext(
-                subject: "Jenkins Build Completed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "Your Jenkins pipeline has completed. Status: ${currentBuild.currentResult}",
+                subject: "Test Email: ${currentBuild.fullDisplayName}",
+                body: "This is a test email from Jenkins",
                 to: "amrm97781@gmail.com"
             )
         }
