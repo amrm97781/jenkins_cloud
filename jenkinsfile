@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Pipeline is running..."
+            }
+        }
+    }
+
+    post {
+        always {
+            emailext(
+                subject: "Jenkins Build Completed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Your Jenkins pipeline has completed. Status: ${currentBuild.currentResult}",
+                to: "amrm97781@gmail.com"
+            )
+        }
+    }
+}
