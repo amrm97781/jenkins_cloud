@@ -12,7 +12,7 @@ pipeline {
             echo "Sending email..."
             emailext(
                 subject: "Test Email: ${currentBuild.fullDisplayName}",
-                body: "This is a test email from Jenkins",
+                body: "This is a test email from Jenkins TASK ",
                 to: "amrm97781@gmail.com"
             )
         }
